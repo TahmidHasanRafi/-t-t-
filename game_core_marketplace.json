@@ -1,0 +1,576 @@
+{
+  "address": "5gGNkXZgrR9rpDuNVLXkvh1nHKCrZuKZhWz4eGwkcwM2",
+  "metadata": {
+    "name": "game_core_marketplace",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "buy",
+      "discriminator": [
+        102,
+        6,
+        61,
+        18,
+        1,
+        218,
+        235,
+        234
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  116,
+                  112,
+                  108,
+                  97,
+                  99,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "docs": [
+            "Platform fee destination."
+          ],
+          "writable": true
+        },
+        {
+          "name": "seller",
+          "docs": [
+            "Seller receives proceeds and rent-close of listing."
+          ],
+          "writable": true
+        },
+        {
+          "name": "listing",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  115,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "asset"
+              }
+            ]
+          }
+        },
+        {
+          "name": "asset",
+          "docs": [
+            "owned by the Core program (not this program). We enforce `owner = CORE_PROGRAM_ID`",
+            "in the account constraint and perform any additional authority/ownership checks in",
+            "the instruction logic."
+          ],
+          "writable": true
+        },
+        {
+          "name": "core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancel",
+      "discriminator": [
+        232,
+        219,
+        223,
+        41,
+        219,
+        236,
+        220,
+        190
+      ],
+      "accounts": [
+        {
+          "name": "seller",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  116,
+                  112,
+                  108,
+                  97,
+                  99,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "listing",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  115,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "asset"
+              }
+            ]
+          }
+        },
+        {
+          "name": "asset",
+          "docs": [
+            "owned by the Core program (not this program). We enforce `owner = CORE_PROGRAM_ID`",
+            "in the account constraint and perform any additional authority/ownership checks in",
+            "the instruction logic."
+          ],
+          "writable": true
+        },
+        {
+          "name": "core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "treasury",
+          "docs": [
+            "Treasury receives platform fees."
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  116,
+                  112,
+                  108,
+                  97,
+                  99,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "treasury",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "list",
+      "discriminator": [
+        54,
+        174,
+        193,
+        67,
+        17,
+        41,
+        132,
+        38
+      ],
+      "accounts": [
+        {
+          "name": "seller",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  97,
+                  114,
+                  107,
+                  101,
+                  116,
+                  112,
+                  108,
+                  97,
+                  99,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "listing",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  115,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "asset"
+              }
+            ]
+          }
+        },
+        {
+          "name": "asset",
+          "docs": [
+            "owned by the Core program (not this program). We enforce `owner = CORE_PROGRAM_ID`",
+            "in the account constraint and perform any additional authority/ownership checks in",
+            "the instruction logic."
+          ],
+          "writable": true
+        },
+        {
+          "name": "core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "price_lamports",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "mint_asset",
+      "docs": [
+        "Mint a Core Asset and write immutable on-chain attributes:",
+        "- minter (always)",
+        "- type (optional)",
+        "Optional royalties plugin."
+      ],
+      "discriminator": [
+        84,
+        175,
+        211,
+        156,
+        56,
+        250,
+        104,
+        118
+      ],
+      "accounts": [
+        {
+          "name": "minter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "payer",
+          "docs": [
+            "Payer for account allocations."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "asset",
+          "docs": [
+            "The asset account (Core uses regular accounts)."
+          ],
+          "writable": true
+        },
+        {
+          "name": "core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "optional_type",
+          "type": {
+            "option": "string"
+          }
+        },
+        {
+          "name": "royalties_bps",
+          "type": {
+            "option": "u16"
+          }
+        },
+        {
+          "name": "creators",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "CreatorInput"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Listing",
+      "discriminator": [
+        218,
+        32,
+        50,
+        73,
+        43,
+        134,
+        26,
+        58
+      ]
+    },
+    {
+      "name": "MarketplaceConfig",
+      "discriminator": [
+        169,
+        22,
+        247,
+        131,
+        182,
+        200,
+        81,
+        124
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "BadPrice",
+      "msg": "Bad price."
+    },
+    {
+      "code": 6001,
+      "name": "AlreadyListed",
+      "msg": "Already listed."
+    },
+    {
+      "code": 6002,
+      "name": "NotListed",
+      "msg": "Not listed."
+    },
+    {
+      "code": 6003,
+      "name": "NotSeller",
+      "msg": "Not seller."
+    },
+    {
+      "code": 6004,
+      "name": "NotAssetOwner",
+      "msg": "Not asset owner."
+    },
+    {
+      "code": 6005,
+      "name": "NameTooLong",
+      "msg": "Name too long."
+    },
+    {
+      "code": 6006,
+      "name": "UriTooLong",
+      "msg": "URI too long."
+    },
+    {
+      "code": 6007,
+      "name": "TypeTooLong",
+      "msg": "Type too long."
+    },
+    {
+      "code": 6008,
+      "name": "BadRoyaltiesBps",
+      "msg": "Bad royalties bps."
+    },
+    {
+      "code": 6009,
+      "name": "BadCreatorPercentages",
+      "msg": "Bad creator percentages (must sum to 100)."
+    }
+  ],
+  "types": [
+    {
+      "name": "CreatorInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "pubkey"
+          },
+          {
+            "name": "percentage",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Listing",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "asset",
+            "type": "pubkey"
+          },
+          {
+            "name": "seller",
+            "type": "pubkey"
+          },
+          {
+            "name": "price_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MarketplaceConfig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}
